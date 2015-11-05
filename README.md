@@ -142,12 +142,12 @@ To git@heroku.com:your-app-name.git
  * [new branch]      master -> master
 ```
 
-To access the hadashboard app, navigate to **http://*your-app-name*.herokuapps.com**. You will be asked to grant the hadashboard app access to your Heroku account. Make sure to **Allow Access**. The hadashboard app needs access to your Heroku account in order to verify your identity. You may be asked to log in to your Heroku account, as well. Use the email address and password from step 1.
+To access the hadashboard app, navigate to **http://*your-app-name*.herokuapp.com**. You will be asked to grant the hadashboard app access to your Heroku account. Make sure to **Allow Access**. The hadashboard app needs access to your Heroku account in order to verify your identity. You may be asked to log in to your Heroku account, as well. Use the email address and password from step 1.
 
 You will see the default dashboard, but it will not yet have access to your SmartThings.
 
 ## 6. Authorize with SmartThings
-To grant the hadashboard access to SmartThings, you must first authorize with the SmartApp created in step 3. To do so, navigate to **http://*your-app-name*.herokuapps.com/smartthings/authorize**. Log in with your SmartThings credentials and allows access to all the devices you would like to be able to control from the hadashboard.
+To grant the hadashboard access to SmartThings, you must first authorize with the SmartApp created in step 3. To do so, navigate to **http://*your-app-name*.herokuapp.com/smartthings/authorize**. Log in with your SmartThings credentials and allows access to all the devices you would like to be able to control from the hadashboard.
 
 After clicking **Authorize** you should be redirected back to the default dashboard, and you should now have access to your things.
 
@@ -194,7 +194,7 @@ Please, refer to the Dashing website for instructions on how to change the grid 
 
 
 # Changing Dashboards
-You can also have multiple dashboards, by simply adding a new .erb file to the dashboards directory and navigating to the dashboards via **http://*your-app-name*.herokuapps.com/*dashboard-file-name-without-extension***
+You can also have multiple dashboards, by simply adding a new .erb file to the dashboards directory and navigating to the dashboards via **http://*your-app-name*.herokuapp.com/*dashboard-file-name-without-extension***
 
 For example, if you want to deploy multiple devices, you could have one dashboard per room and still only use one hadashboard app installation.
 
@@ -212,7 +212,7 @@ Specifically, update the following to include the filename of your theme that ex
 
 # Troubleshooting
 ### My Dashboard is not updating or devices do not respond to interaction.
-If your dashboard is not updating or devices have stopped responding to interaction, first try to refresh your browser. If this did not help, navigate to **http://*your-app-name*.herokuapps.com/smartthings/authorize** and re-authorize with the SmartApp (installation step 6) 
+If your dashboard is not updating or devices have stopped responding to interaction, first try to refresh your browser. If this did not help, navigate to **http://*your-app-name*.herokuapp.com/smartthings/authorize** and re-authorize with the SmartApp (installation step 6)
 You will have to re-authorize with the SmartApp whenever you make changes to backend files (usually .rb or .erb) or the SmartApp Groovy code.
 If your dashboard stops updating or devices have stopped responding without making any changes, make sure to file a bug using the issue tracker.
 
