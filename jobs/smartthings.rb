@@ -39,7 +39,7 @@ end
 # Update the weather ever so often
 SCHEDULER.every '15m', :first_in => 0 do |job|
   # Current weather
-  weather = app.request(:get, 'weather', { feature: 'conditions' })
+  weather = app.request(:get, 'weather', { feature: 'conditions', location: '90210' })
 
   # Forecast (today & tomorrow)
   forecast = app.request(:get, 'weather', { feature: 'forecast' })
