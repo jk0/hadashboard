@@ -742,7 +742,7 @@ def getWeather() {
     if (!feature) {
         feature = "conditions"
     }
-    return getWeatherFeature(feature)
+    return getWeatherFeature(feature, 'ILAGOSAP2')
 }
 
 
