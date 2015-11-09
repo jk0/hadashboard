@@ -742,7 +742,7 @@ def getWeather() {
     if (!feature) {
         feature = "conditions"
     }
-    return getWeatherFeature(feature, '53811')
+    return getWeatherFeature(feature, 'pws:KWIHAZEL2')
 }
 
 
