@@ -4,10 +4,8 @@
 @import "/app/assets/stylesheets/themes/current.scss";
 
 .widget-stmode {
-
-  .mode {
-  	color: $mode-text-color;
-    font-weight: $mode-font-weight;
-  }
-  
+    .mode {
+        color: $mode-text-color;
+        font-weight: $mode-font-weight;
+    }
 }

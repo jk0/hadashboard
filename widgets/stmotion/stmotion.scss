@@ -2,13 +2,11 @@
 // Widget-stmotion styles
 // ----------------------------------------------------------------------------
 .widget-stmotion {
+    .icon-active {
+        color: #fff;
+    }
 
-  .icon-active {
-  	color: #ff00aa;
-  }
-
-  .icon-inactive {
-  	color: #888888;
-  }
-
+    .icon-inactive {
+        color: #888;
+    }
 }

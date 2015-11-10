@@ -2,13 +2,11 @@
 // Widget-stcontact styles
 // ----------------------------------------------------------------------------
 .widget-stcontact {
+    .icon-open {
+        color: #888;
+    }
 
-  .icon-open {
-  	color: #ff00aa;
-  }
-
-  .icon-closed {
-  	color: #888888;
-  }
-
+    .icon-closed {
+        color: #fff;
+    }
 }

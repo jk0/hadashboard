@@ -2,12 +2,11 @@
 // Widget-stpresence styles
 // ----------------------------------------------------------------------------
 .widget-stpresence {
+    .icon-present {
+        color: #fff;
+    }
 
-  .icon-present {
-  	color: #aaff00;
-  }
-
-  .icon-absent {
-  	color: #888888;
-  }
+    .icon-absent {
+        color: #888;
+    }
 }

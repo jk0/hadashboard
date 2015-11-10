@@ -4,21 +4,21 @@
 @import "/app/assets/stylesheets/themes/current.scss";
 
 .widget-stgarage {
+    background-color: $background-color-action !important;
 
-  background-color: $background-color-action !important;
+    .icon-open {
+        color: #888;
+    }
 
-  .icon-open {
-  	color: #ff00aa;
-  }
-  .icon-opening {
-  	color: #ffff00;
-  }
-  .icon-closing {
-  	color: #ffff00;
-  }
+    .icon-opening {
+        color: #aaff00;
+    }
 
-  .icon-closed {
-  	color: #888888;
-  }
+    .icon-closing {
+        color: #aaff00;
+    }
 
+    .icon-closed {
+        color: #fff;
+    }
 }

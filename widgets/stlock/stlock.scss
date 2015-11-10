@@ -4,15 +4,13 @@
 @import "/app/assets/stylesheets/themes/current.scss";
 
 .widget-stlock {
+    background-color: $background-color-action !important;
 
-  background-color: $background-color-action !important;
+    .icon-unlocked {
+        color: #888;
+    }
 
-  .icon-unlocked {
-  	color: #ff00aa;
-  }
-
-  .icon-locked {
-  	color: #fff;
-  }
-
+    .icon-locked {
+        color: #fff;
+    }
 }
