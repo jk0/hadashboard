@@ -55,6 +55,23 @@ mappings {
             GET: "getContact"
         ]
     }
+    path("/dimmer") {
+        action: [
+            GET: "getDimmer",
+            POST: "postDimmer"
+        ]
+    }
+    path("/dimmerLevel") {
+        action: [
+            POST: "dimmerLevel"
+        ]
+    }
+    path("/garage") {
+        action: [
+            GET: "getGarage",
+            POST: "postGarage"
+        ]
+    }
     path("/lock") {
         action: [
             GET: "getLock",
@@ -87,17 +104,6 @@ mappings {
             GET: "getPresence"
         ]
     }
-    path("/dimmer") {
-        action: [
-            GET: "getDimmer",
-            POST: "postDimmer"
-        ]
-    }
-    path("/dimmerLevel") {
-        action: [
-            POST: "dimmerLevel"
-        ]
-    }
     path("/switch") {
         action: [
             GET: "getSwitch",
@@ -114,11 +120,6 @@ mappings {
             GET: "getHumidity"
         ]
     }
-    path("/weather") {
-        action: [
-            GET: "getWeather"
-        ]
-    }
     path("/thermostat") {
         action: [
             GET: "getThermostat"
@@ -127,6 +128,11 @@ mappings {
     path("/thermostatSetpoint") {
         action: [
             POST: "thermostatSetpoint"
+        ]
+    }
+    path("/weather") {
+        action: [
+            GET: "getWeather"
         ]
     }
 }
@@ -162,14 +168,16 @@ def initialize() {
     ]
 
     subscribe(contacts, "contact", contactHandler)
-    subscribe(humidities, "humidity", humidityHandler)
+    subscribe(contacts, "contact", garageHandler)
+    subscribe(contacts, "door", garageHandler)
     subscribe(dimmers, "level", dimmerHandler)
+    subscribe(dimmers, "switch", dimmerSwitch)
+    subscribe(humidities, "humidity", humidityHandler)
     subscribe(location, locationHandler)
     subscribe(locks, "lock", lockHandler)
     subscribe(motions, "motion", motionHandler)
     subscribe(meters, "power", meterHandler)
     subscribe(presences, "presence", presenceHandler)
-    subscribe(dimmers, "switch", dimmerSwitch)
     subscribe(switches, "switch", switchHandler)
     subscribe(temperatures, "temperature", temperatureHandler)
     subscribe(thermostats, "temperature", thermostatTempHandler)
@@ -299,6 +307,56 @@ def dimmerHandler(evt) {
 def dimmerSwitch(evt) {
     def whichDimmer = dimmers.find { it.displayName == evt.displayName }
     def widgetId = state.widgets.dimmer[evt.displayName]
+    notifyWidget(widgetId, ["state": evt.value])
+}
+
+//
+// Garages
+//
+def getGarage() {
+    def deviceId = request.JSON?.deviceId
+    log.debug "getGarage ${deviceId}"
+
+    if (deviceId) {
+        registerWidget("contact", deviceId, request.JSON?.widgetId)
+
+        def whichGarage = contacts.find { it.displayName == deviceId }
+        if (!whichGarage) {
+            return respondWithStatus(404, "Device '${deviceId}' not found.")
+        } else {
+            return [
+                "deviceId": deviceId,
+                "state": whichGarage.currentContact]
+        }
+    }
+
+    def result = [:]
+    garages.each {
+        result[it.displayName] = [
+            "state": it.currentContact,
+            "widgetId": state.widgets.garage[it.displayName]]}
+
+    return result
+}
+
+def postGarage() {
+    def command = request.JSON?.command
+    def deviceId = request.JSON?.deviceId
+    log.debug "postGarage ${deviceId}, ${command}"
+
+    if (command && deviceId) {
+        def whichGarage = contacts.find { it.displayName == deviceId }
+        if (!whichGarage) {
+            return respondWithStatus(404, "Device '${deviceId}' not found.")
+        } else {
+            whichGarage."$command"()
+        }
+    }
+    return respondWithSuccess()
+}
+
+def garageHandler(evt) {
+    def widgetId = state.widgets.contact[evt.displayName]
     notifyWidget(widgetId, ["state": evt.value])
 }
 
