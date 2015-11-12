@@ -182,7 +182,6 @@ def initialize() {
     subscribe(temperatures, "temperature", temperatureHandler)
     subscribe(thermostats, "temperature", thermostatTempHandler)
     subscribe(thermostats, "thermostatSetpoint", thermostatSetpointHandler)
-
 }
 
 
